@@ -1,10 +1,18 @@
 # radio-dm-gateway
 
-Talk to Hermes over a radio, built on the Meshtastic® Python API. Meshtastic® is a registered trademark of Meshtastic LLC. This site is not affiliated with or endorsed by the Meshtastic project. The repository was renamed on 2026-10-08 from hermes-plugin-meshtastic-gateway to hermes-plugin-radio-dm-gateway; GitHub redirects the old URL.
+Talk to Hermes over a radio, built on the Meshtastic® Python API. The repository was renamed on 2026-10-08 from hermes-plugin-meshtastic-gateway to hermes-plugin-radio-dm-gateway; GitHub redirects the old URL.
 
 If you already installed the old name: run `hermes plugins remove meshtastic-gateway`, then install this repository again.
 In `config.yaml`, rename `platforms.meshtastic-gateway` to `platforms.radio-dm-gateway` and keep the same URL and allowlist.
 Delete `plugin-data/meshtastic-gateway` under the Hermes home. Uninstall does not delete it. New rows go in `plugin-data/radio-dm-gateway`.
+
+## Trademark
+
+Meshtastic® is a registered trademark of Meshtastic LLC. Meshtastic software components are released under various licenses, see GitHub for details. No warranty is provided - use at your own risk.
+
+This site is not affiliated with or endorsed by the Meshtastic project.
+
+This plugin does not use the Meshtastic URL scheme, such as meshtastic.org/e/# channel links. One reply uses at most 4 chunks by default (8 is the ceiling), because every packet uses airtime on a channel that nearby nodes share.
 
 A direct message that is addressed to this node, from a node id on the allowlist, is handed to Hermes only when the packet's `pkiEncrypted` flag is true. The reply is sent back to that node as one or more text packets. An empty allowlist answers nobody. There is no allow-all switch. Channel packets are never answered, because a channel key can impersonate any sender. Checked with a fake radio and the real Hermes adapter (`platform_registry.create_adapter`, then `handle_message`, then `send`) on Hermes v0.21.4 and on current main. Not tried on a physical radio.
 
